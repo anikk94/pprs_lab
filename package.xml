@@ -2,12 +2,31 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>pprs_ufactory</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <version>0.1.0</version>
+  <description>NIST: PPRS Lab Simulation (UFactory)</description>
   <maintainer email="anikk.umd@gmail.com">root</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- ================================================== -->
+  <!-- these are the individual packages in xarm_ros2     -->
+  <!-- try and get these in a single load operation since -->
+  <!-- this list might change in future                   -->
+  <!-- ================================================== -->
+  <depend>xarm_api</depend>
+  <depend>xarm_controller</depend>
+  <depend>xarm_description</depend>
+  <depend>xarm_gazebo</depend>
+  <depend>xarm_moveit_config</depend>
+  <depend>xarm_moveit_servo</depend>
+  <depend>xarm_msgs</depend>
+  <depend>xarm_planner</depend>
+
+  <!-- ================================================ -->
+  <!-- this should be loaded using git submodule system -->
+  <!--   <depend>xarm_sdk</depend>                      -->
+  <!-- ================================================ -->
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
