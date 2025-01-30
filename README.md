@@ -1,6 +1,9 @@
 # PPRS Lab Simulation
 gz sim (gazebo sim) (gazebo harmonic - ros2 jazzy)
 
+# setup steps:
+1. place the initial positions config file `xarm6_default_kinematics.yaml` in `xarm_description/config/kinematics/default/`. rename the existing file.
+
 agenda
 ------
 1. add vacuum gripper 
