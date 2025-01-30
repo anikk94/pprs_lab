@@ -164,9 +164,12 @@ def launch_setup(context, *args, **kwargs):
             '-topic', 'robot_description',
             # '-name', '{}'.format(xarm_type),
             '-name', 'UF_ROBOT',
+            # base link xyzRPY
             '-x', '0.0',
             '-y', '-0.54' if robot_type.perform(context) == 'uf850' else '-0.5',
             '-z', '0.7366',
+            # '-R', '1.571',
+            # '-P', '1.571',
             '-Y', '1.571',
             # '-allow_renaming', 'true'
         ],
