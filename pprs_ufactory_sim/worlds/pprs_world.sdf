@@ -292,7 +292,7 @@
             </uri>
         </include>
 
-        <model name='box'>
+        <model name='table'>
             <pose>0.0 0.0 0.3683 0 0 0</pose>
             <link name='box_link'>
                 <inertial>
@@ -426,6 +426,171 @@
             </uri>
         </include>
 
+
+        <!-- <include>
+            <pose>0 0 0 0 0 0</pose>
+            <uri>
+                model://Bin
+            </uri>
+        </include> -->
+
+        <include>
+            <pose>0 0 0.7366 0 0 0</pose>
+            <uri>
+                https://fuel.gazebosim.org/1.0/GoogleResearch/models/Curver_Storage_Bin_Black_Small
+            </uri>
+        </include>
+
+        <model name="ball1">
+            <pose>0 0 1 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
+        <model name="ball2">
+            <pose>0 0.01 1.1 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
+        <model name="ball3">
+            <pose>0 -0.01 1.2 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
+        <model name="ball4">
+            <pose>0 -0.03 1.15 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
+        <model name="ball5">
+            <pose>0.03 0.02 1.2 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
+        <model name="ball6">
+            <pose>0 0.07 1.15 0 0 0</pose>
+            <link name="sphere_link">
+                <collision name="sphere_collision">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                </collision>
+                <visual name="sphere_visual">
+                    <geometry>
+                        <sphere>
+                            <radius>0.020</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>0 1 0 1</ambient>
+                        <diffuse>0 1 0 1</diffuse>
+                        <specular>0 1 0 1</specular>
+                    </material>
+                    <cast_shadows>false</cast_shadows>
+                </visual>
+            </link>
+        </model>
 
     </world>
 

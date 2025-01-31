@@ -12,6 +12,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch.event_handlers import OnProcessExit, OnProcessStart
 from launch.actions import OpaqueFunction
 
+from launch.actions import SetEnvironmentVariable
 
 def launch_setup(context, *args, **kwargs):
     # configuration variables for this launch file
@@ -154,6 +155,7 @@ def launch_setup(context, *args, **kwargs):
             'gz_args': ' -r -v 4 {}'.format(pprs_ufactory_world.perform(context)),
         }.items(),
     )
+    set_gz_sim_resource_path=SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH',value='/root/xarm_ws/install/pprs_ufactory_sim/share/pprs_ufactory_sim/models/')
 
     # gazebo spawn entity node (spawn ufactory robot)
     gazebo_spawn_entity_node = Node(
@@ -243,6 +245,7 @@ def launch_setup(context, *args, **kwargs):
 
     if len(controller_nodes) > 0:
         return [
+            set_gz_sim_resource_path,
             RegisterEventHandler(
                 event_handler=OnProcessStart(
                     target_action=robot_state_publisher_node,
@@ -278,6 +281,7 @@ def launch_setup(context, *args, **kwargs):
         ]
     else:
         return [
+            set_gz_sim_resource_path,
             RegisterEventHandler(
                 event_handler=OnProcessStart(
                     target_action=robot_state_publisher_node,
