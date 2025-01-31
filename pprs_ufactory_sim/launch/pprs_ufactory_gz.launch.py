@@ -137,7 +137,7 @@ def launch_setup(context, *args, **kwargs):
 
     # gazebo world or sdf
     pprs_ufactory_world=PathJoinSubstitution([
-        FindPackageShare('pprs_ufactory'),
+        FindPackageShare('pprs_ufactory_sim'),
         'worlds',
         'pprs_world.sdf'
     ])
@@ -177,7 +177,7 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # bridge gz and ros topics
-    bridge_params = os.path.join(get_package_share_directory('pprs_ufactory'),'config','gz_bridge.yaml')
+    bridge_params = os.path.join(get_package_share_directory('pprs_ufactory_sim'),'config','gz_bridge.yaml')
     ros_gz_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',

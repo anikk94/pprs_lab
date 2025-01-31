@@ -127,7 +127,7 @@ def launch_setup(context, *args, **kwargs):
     # robot gazebo launch
     # xarm_gazebo/launch/_robot_beside_table_gz.launch.py
     robot_gazebo_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution([FindPackageShare('pprs_ufactory'), 'launch', 'pprs_ufactory_gz.launch.py'])),
+        PythonLaunchDescriptionSource(PathJoinSubstitution([FindPackageShare('pprs_ufactory_sim'), 'launch', 'pprs_ufactory_gz.launch.py'])),
         launch_arguments={
             'dof': dof,
             'robot_type': robot_type,
