@@ -155,7 +155,7 @@ def launch_setup(context, *args, **kwargs):
             'gz_args': ' -r -v 4 {}'.format(pprs_ufactory_world.perform(context)),
         }.items(),
     )
-    set_gz_sim_resource_path=SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH',value='/root/xarm_ws/install/pprs_ufactory_sim/share/pprs_ufactory_sim/models/')
+    set_gz_sim_resource_path=SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH',value='/root/xarm_ws/install/pprs_ufactory_sim/share/pprs_ufactory_sim/models')
 
     # gazebo spawn entity node (spawn ufactory robot)
     gazebo_spawn_entity_node = Node(
