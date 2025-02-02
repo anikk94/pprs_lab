@@ -2,6 +2,9 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.hpp>
+#include <rclcpp/parameter_client.hpp>
+
+using namespace std::chrono_literals;
 
 int main(int argc, char *argv[])
 {
@@ -24,9 +27,9 @@ int main(int argc, char *argv[])
   {
     geometry_msgs::msg::Pose msg;
     msg.orientation.w = 1.0;
-    msg.position.x = 0.28;
-    msg.position.y = -0.2;
-    msg.position.z = 0.5;
+    msg.position.x = 0.47;
+    msg.position.y = 0.09;
+    msg.position.z = 0.45;
     return msg;
   }();
   move_group_interface.setPoseTarget(target_pose);
