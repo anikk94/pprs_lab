@@ -112,7 +112,8 @@ def launch_setup(context, *args, **kwargs):
 
     my_prog=Node(
         package='pprs_ufactory_moveit',
-        executable='moveit_robot_program',
+        # executable='moveit_robot_program',
+        executable='my_moveit_utils',
         parameters=[
             {
                 'robot_description': moveit_config_dict['robot_description'],

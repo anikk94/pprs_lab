@@ -21,8 +21,29 @@ ament_target_dependencies(
   "rclcpp"
 )
 
-install(TARGETS moveit_robot_program
-  DESTINATION lib/${PROJECT_NAME})
+add_executable(
+  my_moveit_utils
+  src/my_moveit_utils.cpp
+)
+target_compile_features(
+  my_moveit_utils
+  PUBLIC
+  c_std_99
+  cxx_std_17
+)
+ament_target_dependencies(
+  my_moveit_utils
+  "moveit_ros_planning_interface"
+  "rclcpp"
+)
+
+install(
+  TARGETS
+  moveit_robot_program
+  my_moveit_utils
+  DESTINATION
+  lib/${PROJECT_NAME}
+)
 
 install(
   DIRECTORY

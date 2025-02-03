@@ -33,7 +33,9 @@ def launch_setup(context, *args, **kwargs):
     attach_rpy = LaunchConfiguration('attach_rpy', default='"0 0 0"')
     mesh_suffix = LaunchConfiguration('mesh_suffix', default='stl')
     kinematics_suffix = LaunchConfiguration('kinematics_suffix', default='')
+    show_rviz = LaunchConfiguration('show_rviz', default=False)
     
+
     add_gripper = LaunchConfiguration('add_gripper', default=False)
     add_vacuum_gripper = LaunchConfiguration('add_vacuum_gripper', default=False)
     add_bio_gripper = LaunchConfiguration('add_bio_gripper', default=False)
@@ -134,7 +136,8 @@ def launch_setup(context, *args, **kwargs):
             'prefix': prefix,
             'moveit_config_dump': moveit_config_dump,
             'load_controller': 'true',
-            'show_rviz': 'true',
+            # 'show_rviz': 'true',
+            'show_rviz': show_rviz,
             'no_gui_ctrl': no_gui_ctrl,
         }.items(),
     )
