@@ -406,7 +406,7 @@
             </uri>
         </include>
 
-        <include>
+        <!-- <include>
             <name>ball1</name>
             <pose>0 0 1 0 0 0</pose>
             <uri>
@@ -454,7 +454,298 @@
             <uri>
                 model://PingPong_Ball
             </uri>
+        </include> -->
+
+        
+        <include>
+            <name>ball097</name>
+            <pose>-0.12 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
         </include>
+        
+        <include>
+            <name>ball098</name>
+            <pose>-0.08 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball099</name>
+            <pose>-0.04 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+
+        <include>
+            <name>ball100</name>
+            <pose>0.00 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball101</name>
+            <pose>0.04 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball102</name>
+            <pose>0.08 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball103</name>
+            <pose>0.12 0.0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        <!-- ============================================================== -->
+
+        
+        <include>
+            <name>ball297</name>
+            <pose>-0.12 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball298</name>
+            <pose>-0.08 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball299</name>
+            <pose>-0.04 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+
+        <include>
+            <name>ball300</name>
+            <pose>0.00 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball301</name>
+            <pose>0.04 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball302</name>
+            <pose>0.08 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball303</name>
+            <pose>0.12 -0.05 1 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        <!-- ============================================================== -->
+
+        
+        <include>
+            <name>ball497</name>
+            <pose>-0.12 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball498</name>
+            <pose>-0.08 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball499</name>
+            <pose>-0.04 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+
+        <include>
+            <name>ball500</name>
+            <pose>0.00 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball501</name>
+            <pose>0.04 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball502</name>
+            <pose>0.08 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball503</name>
+            <pose>0.12 -0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        <!-- ============================================================== -->
+
+        
+        <include>
+            <name>ball697</name>
+            <pose>-0.12 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball698</name>
+            <pose>-0.08 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball699</name>
+            <pose>-0.04 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+
+        <include>
+            <name>ball700</name>
+            <pose>0.00 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball701</name>
+            <pose>0.04 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball702</name>
+            <pose>0.08 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball703</name>
+            <pose>0.12 0.05 0.95 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        <!-- ============================================================== -->
+
+<!--         
+        <include>
+            <name>ball897</name>
+            <pose>-0.12 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball898</name>
+            <pose>-0.08 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball899</name>
+            <pose>-0.04 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+
+        <include>
+            <name>ball900</name>
+            <pose>0.00 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball901</name>
+            <pose>0.04 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball902</name>
+            <pose>0.08 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include>
+        
+        <include>
+            <name>ball903</name>
+            <pose>0.12 0 0.90 0 0 0</pose>
+            <uri>
+                model://PingPong_Ball
+            </uri>
+        </include> -->
+
+
 
     </world>
 
