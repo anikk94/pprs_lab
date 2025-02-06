@@ -2,6 +2,9 @@
 #include <moveit/robot_model/robot_model.hpp>
 #include <moveit/robot_state/robot_state.hpp>
 
+void printJointValues(const moveit::core::RobotModelPtr &kinematic_model, moveit::core::RobotStatePtr robot_state, const rclcpp::Logger& LOGGER);
+
+
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
@@ -57,38 +60,38 @@ int main(int argc, char **argv)
         RCLCPP_INFO(LOGGER, "Joint %s: %f", joint_names[i].c_str(), joint_values[i]);
     }
 
-    // Joint Limits
-    // ^^^^^^^^^^^^
-    // setJointGroupPositions() does not enforce joint limits by itself, but a call to enforceBounds() will do it.
-    /* Set one joint in the Panda arm outside its joint limit */
-    joint_values[0] = 5.57;
-    robot_state->setJointGroupPositions(joint_model_group, joint_values);
+    // // Joint Limits
+    // // ^^^^^^^^^^^^
+    // // setJointGroupPositions() does not enforce joint limits by itself, but a call to enforceBounds() will do it.
+    // /* Set one joint in the Panda arm outside its joint limit */
+    // joint_values[0] = 5.57;
+    // robot_state->setJointGroupPositions(joint_model_group, joint_values);
 
-    /* Check whether any joint is outside its joint limits */
-    RCLCPP_INFO_STREAM(LOGGER, "Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
+    // /* Check whether any joint is outside its joint limits */
+    // RCLCPP_INFO_STREAM(LOGGER, "Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
 
-    /* Enforce the joint limits for this state and check again*/
-    robot_state->enforceBounds();
-    RCLCPP_INFO_STREAM(LOGGER, "Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
+    // /* Enforce the joint limits for this state and check again*/
+    // robot_state->enforceBounds();
+    // RCLCPP_INFO_STREAM(LOGGER, "Current state is " << (robot_state->satisfiesBounds() ? "valid" : "not valid"));
 
     // ========================================================================
     // checkpoint
     // ========================================================================
 
-    // Forward Kinematics
-    // ^^^^^^^^^^^^^^^^^^
-    // Now, we can compute forward kinematics for a set of random joint
-    // values. Note that we would like to find the pose of the
-    // "panda_link8" which is the most distal link in the
-    // "panda_arm" group of the robot.
-    robot_state->setToRandomPositions(joint_model_group);
+    // // Forward Kinematics
+    // // ^^^^^^^^^^^^^^^^^^
+    // // Now, we can compute forward kinematics for a set of random joint
+    // // values. Note that we would like to find the pose of the
+    // // "link6" which is the most distal link in the
+    // // "xarm6" group of the robot.
+    // robot_state->setToRandomPositions(joint_model_group);
     const Eigen::Isometry3d &end_effector_state = robot_state->getGlobalLinkTransform("link6");
 
-    /* Print end-effector pose. Remember that this is in the model frame */
-    RCLCPP_INFO_STREAM(LOGGER, "Translation: \n"
-                                   << end_effector_state.translation() << "\n");
-    RCLCPP_INFO_STREAM(LOGGER, "Rotation: \n"
-                                   << end_effector_state.rotation() << "\n");
+    // /* Print end-effector pose. Remember that this is in the model frame */
+    // RCLCPP_INFO_STREAM(LOGGER, "Translation: \n"
+    //                                << end_effector_state.translation() << "\n");
+    // RCLCPP_INFO_STREAM(LOGGER, "Rotation: \n"
+    //                                << end_effector_state.rotation() << "\n");
 
     // Inverse Kinematics
     // ^^^^^^^^^^^^^^^^^^
@@ -130,4 +133,24 @@ int main(int argc, char **argv)
 
     rclcpp::shutdown();
     return 0;
+}
+
+
+
+void printJointValues(const moveit::core::RobotModelPtr &kinematic_model, moveit::core::RobotStatePtr robot_state, const rclcpp::Logger&  LOGGER){
+    RCLCPP_INFO(LOGGER, "printJointValues()");
+
+    const moveit::core::JointModelGroup *joint_model_group = kinematic_model->getJointModelGroup("xarm6");
+
+    const std::vector<std::string> &joint_names = joint_model_group->getVariableNames();
+
+    std::vector<double> joint_values;
+
+    robot_state->copyJointGroupPositions(joint_model_group, joint_values);
+    
+    for (std::size_t i = 0; i < joint_names.size(); ++i)
+    {
+        RCLCPP_INFO(LOGGER, "Joint %s: %f", joint_names[i].c_str(), joint_values[i]);
+    }
+
 }
