@@ -1,0 +1,172 @@
+root@FINCH:~/xarm_ws# ros2 topic hz /camera/camera/depth/color/points
+average rate: 18.221
+        min: 0.024s max: 0.334s std dev: 0.06263s window: 22
+average rate: 18.497
+        min: 0.024s max: 0.334s std dev: 0.05192s window: 41
+average rate: 19.922
+        min: 0.024s max: 0.334s std dev: 0.04245s window: 65
+average rate: 21.343
+        min: 0.024s max: 0.334s std dev: 0.03700s window: 91
+average rate: 22.587
+        min: 0.024s max: 0.334s std dev: 0.03300s window: 119
+
+# ros2 topic echo --once /camera/camera/depth/color/points >> pointcloud2msg.txt
+header:
+  stamp:
+    sec: 1753884931
+    nanosec: 99574463
+  frame_id: camera_depth_optical_frame
+height: 1
+width: 598734
+fields:
+- name: x
+  offset: 0
+  datatype: 7
+  count: 1
+- name: y
+  offset: 4
+  datatype: 7
+  count: 1
+- name: z
+  offset: 8
+  datatype: 7
+  count: 1
+- name: rgb
+  offset: 16
+  datatype: 7
+  count: 1
+is_bigendian: false
+point_step: 20
+row_step: 18432000
+data:
+- 59
+- 231
+- 75
+- 62
+- 201
+- 235
+- 94
+- 190
+- 205
+- 204
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 193
+- 199
+- 181
+- 0
+- 190
+- 135
+- 76
+- 62
+- 201
+- 235
+- 94
+- 190
+- 205
+- 204
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 192
+- 198
+- 180
+- 0
+- 65
+- 40
+- 77
+- 62
+- 201
+- 235
+- 94
+- 190
+- 205
+- 204
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 193
+- 200
+- 180
+- 0
+- 195
+- 200
+- 77
+- 62
+- 201
+- 235
+- 94
+- 190
+- 205
+- 204
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 193
+- 200
+- 180
+- 0
+- 52
+- 9
+- 78
+- 62
+- 7
+- 132
+- 94
+- 190
+- 68
+- 139
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 194
+- 201
+- 181
+- 0
+- 108
+- 169
+- 78
+- 62
+- 7
+- 132
+- 94
+- 190
+- 68
+- 139
+- 12
+- 63
+- 0
+- 0
+- 0
+- 0
+- 192
+- 199
+- 179
+- 0
+- 164
+- 73
+- 79
+- 62
+- 7
+- 132
+- 94
+- 190
+- '...'
+is_dense: true
+---

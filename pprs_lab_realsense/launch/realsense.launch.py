@@ -19,6 +19,7 @@ realsense_stream = IncludeLaunchDescription(
     ),
     launch_arguments={
         'pointcloud.enable': 'True',
+         'align_depth.enable': 'True',
     }.items(),
 )
 
