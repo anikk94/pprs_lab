@@ -10,6 +10,38 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+find_package(PCL REQUIRED)
+# find_package(pcl_conversions REQUIRED)
+
+
+include_directories(
+  $PCL INCLUDE_DIRS{}
+  ${rclcpp_INCLUDE_DIRS}
+#  ${pcl_converstions_INCLUDE_DIRS}
+)
+
+add_executable(pcl_example_1 src/pcl_example_1.cpp)
+ament_target_dependencies(pcl_example_1 )
+
+
+# add_executable(
+#   rs-pcl
+#   src/rs-pcl.cpp
+# )
+
+# target_link_libraries(
+#   rs-pcl
+#   ${PCL_LIBRARIES}
+# #  ${rclcpp_LIBRARIES}
+# #  ${pcl_conversions_LIBRARIES}
+# )
+
+# install(
+#   TARGETS
+#   rs-pcl
+#   DESTINATION
+#   lib/${PROJECT_NAME}
+# )
 
 install(
   DIRECTORY
