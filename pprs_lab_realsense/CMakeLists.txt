@@ -12,17 +12,29 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 find_package(PCL REQUIRED)
 # find_package(pcl_conversions REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(realsense2 REQUIRED)
 
 
-include_directories(
-  $PCL INCLUDE_DIRS{}
-  ${rclcpp_INCLUDE_DIRS}
-#  ${pcl_converstions_INCLUDE_DIRS}
-)
+include_directories(${PCL_INCLUDE_DIRS} ${rclcpp_INCLUDE_DIRS}) # ${pcl_converstions_INCLUDE_DIRS} )
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
 
-add_executable(pcl_example_1 src/pcl_example_1.cpp)
-ament_target_dependencies(pcl_example_1 )
+add_executable(pcl_filtering_example_1 src/pcl_filtering_example_1.cpp)
+# ament_target_dependencies(pcl_filtering_example_1 )
+target_link_libraries(pcl_filtering_example_1 ${PCL_LIBRARIES})
 
+add_executable(pcl_filtering_example_2 src/pcl_filtering_example_2.cpp)
+target_link_libraries(pcl_filtering_example_2 ${PCL_LIBRARIES})
+
+add_executable(pcl_yt_example_1 src/pcl_yt_example_1.cpp)
+target_link_libraries(pcl_yt_example_1 ${PCL_LIBRARIES})
+
+add_executable(opencv_example_1 src/opencv_example_1.cpp)
+target_link_libraries(opencv_example_1 ${OpenCV_LIBS})
+
+add_executable(rs_example_1 src/rs_example_1.cpp)
+target_link_libraries(rs_example_1 realsense2)
 
 # add_executable(
 #   rs-pcl
@@ -36,12 +48,17 @@ ament_target_dependencies(pcl_example_1 )
 # #  ${pcl_conversions_LIBRARIES}
 # )
 
-# install(
-#   TARGETS
-#   rs-pcl
-#   DESTINATION
-#   lib/${PROJECT_NAME}
-# )
+install(
+  TARGETS
+  # rs-pcl
+  pcl_filtering_example_1
+  pcl_filtering_example_2
+  pcl_yt_example_1
+  opencv_example_1
+  rs_example_1
+  DESTINATION
+  lib/${PROJECT_NAME}
+)
 
 install(
   DIRECTORY
