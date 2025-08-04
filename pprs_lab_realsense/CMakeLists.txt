@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-find_package(PCL REQUIRED)
+find_package(PCL 1.5 REQUIRED)
 # find_package(pcl_conversions REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(realsense2 REQUIRED)
@@ -36,6 +36,12 @@ target_link_libraries(opencv_example_1 ${OpenCV_LIBS})
 add_executable(rs_example_1 src/rs_example_1.cpp)
 target_link_libraries(rs_example_1 realsense2)
 
+add_executable(rs_example_2 src/rs_example_2.cpp)
+target_link_libraries(rs_example_2 realsense2 ${OpenCV_LIBS})
+
+add_executable(pcl_interactive_icp_1 src/pcl_interactive_icp_1.cpp)
+target_link_libraries(pcl_interactive_icp_1 ${PCL_LIBRARIES})
+
 # add_executable(
 #   rs-pcl
 #   src/rs-pcl.cpp
@@ -56,6 +62,8 @@ install(
   pcl_yt_example_1
   opencv_example_1
   rs_example_1
+  rs_example_2
+  pcl_interactive_icp_1
   DESTINATION
   lib/${PROJECT_NAME}
 )

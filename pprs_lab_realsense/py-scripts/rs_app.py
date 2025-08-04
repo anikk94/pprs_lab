@@ -8,7 +8,7 @@ class App:
         root.title("realsense launcher tk")
         root.geometry("400x800")
 
-        label = tk.Label(root, text="placeholder",bg="greenyellow")
+        label = tk.Label(root, text="List of Demos",bg="greenyellow")
         label.pack(fill=tk.X)
 
         button1 = tk.Button(
@@ -62,7 +62,7 @@ class App:
         button16 = tk.Button(
             text="pointcloud pyglet",
             command=self.launch_pc_pyglet
-            )ros
+            )
         button16.pack(fill=tk.BOTH, expand=True)
 
     def launch_ascii_art(self):
