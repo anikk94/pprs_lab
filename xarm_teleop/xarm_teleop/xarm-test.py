@@ -30,8 +30,18 @@ class RobotMain(object):
         self.x=195
         self.y=-18.5
         self.z=553.5
-        
-        
+
+        self.current_direction = {'x': 0, 'y': 0}
+        self.move_step = 2.0
+
+    # not useful, just to try        
+    @property
+    def x_val(self):
+        print("x()")
+        return self.x
+
+
+
     def _robot_init(self):
         self._arm.clean_warn()
         self._arm.clean_error()
@@ -102,8 +112,10 @@ class RobotMain(object):
 
     def run(self):
         print("RobotMain::run()")
-        while self.running:
-            1
+        #while self.running:
+        #
+        #    1
+
         #try:
         #    # Draw Circle
         #    self._tcp_acc = 2000*self.s
@@ -131,6 +143,24 @@ class RobotMain(object):
         #    self._arm.release_error_warn_changed_callback(self._error_warn_changed_callback)
         #    self._arm.release_state_changed_callback(self._state_changed_callback)
         
+
+        while self.is_alive and self.running:
+            ret, pos = self._arm.get_position(is_radian=False)
+
+            if ret == 0:
+                current_x, current_y, current_z, roll, pitch, yaw = pos          
+                
+                target_x = current_x + self.current_direction['x'] * self.move_step
+                target_y = current_y + self.current_direction['y'] * self.move_step
+
+                self._arm.set_servo_cartesian(
+                    [target_x, target_y, current_z, roll, pitch, yaw],
+                    speed=20,
+                    mvacc=2000,
+                )
+
+            time.sleep(0.01)
+
 def on_press(key, injected):
     try:
         print(' alphanumeric key {} pressed; it was {}'.format(
@@ -142,10 +172,36 @@ def on_press(key, injected):
             arm.set_mode(0)
         elif key.char == '1':
             print('mode 1')
+            arm.motion_enable(True)
             arm.set_mode(1)
+            arm.set_state(0)
+            time.sleep(0.1)
         elif key.char == '2':
             print('mode 2')
             arm.set_mode(2)
+        elif key.char == '3':
+            print('mode 3')
+            arm.set_mode(3)
+        elif key.char == '4':
+            print('mode 4')
+            arm.set_mode(4)
+        elif key.char == '5':
+            print('mode 5')
+            arm.set_mode(5)
+        elif key.char == '6':
+            print('mode 6')
+            arm.set_mode(6)
+        elif key.char == '7':
+            print('mode 7')
+            arm.set_mode(7)
+        elif key.char == '8':
+            print('mode 8')
+            arm.set_mode(8)
+        elif key.char == '9':
+            print('mode 9')
+            arm.set_mode(9)
+        elif key.char == '-':
+            print('setting arm state to 0')
             arm.set_state(0)
 
     except AttributeError:
@@ -155,22 +211,30 @@ def on_press(key, injected):
             print("Stopping Program")
             robot_main.running = False
             return False
+        #elif key == keyboard.Key.up:
+        #    print("up key pressed")
+        #    robot_main.x+=5
+        #    arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+        #elif key == keyboard.Key.down:
+        #    print("down key pressed")
+        #    robot_main.x-=5
+        #    arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+        #elif key == keyboard.Key.left:
+        #    print("up key pressed")
+        #    robot_main.y+=5
+        #    arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+        #elif key == keyboard.Key.right:
+        #    print("down key pressed")
+        #    robot_main.y-=5
+        #    arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
         elif key == keyboard.Key.up:
-            print("up key pressed")
-            robot_main.x+=5
-            arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+            robot_main.current_direction['x']=1
         elif key == keyboard.Key.down:
-            print("down key pressed")
-            robot_main.x-=5
-            arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+            robot_main.current_direction['x']=-1
         elif key == keyboard.Key.left:
-            print("up key pressed")
-            robot_main.y+=5
-            arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+            robot_main.current_direction['y']=-1
         elif key == keyboard.Key.right:
-            print("down key pressed")
-            robot_main.y-=5
-            arm.set_position(robot_main.x,robot_main.y,robot_main.z,177, -19.5,0)
+            robot_main.current_direction['y']=1
 
 
 def on_release(key, injected):
@@ -178,25 +242,33 @@ def on_release(key, injected):
         key, 'faked' if injected else 'not faked'))
     if key == keyboard.Key.esc:
         # Stop listener
+        robot_main.running = False
         return False
+    elif key == keyboard.Key.up:
+        robot_main.current_direction['x']=0
+    elif key == keyboard.Key.down:
+        robot_main.current_direction['x']=0
+    elif key == keyboard.Key.left:
+        robot_main.current_direction['y']=0
+    elif key == keyboard.Key.right:
+        robot_main.current_direction['y']=0
 
         
 if __name__ == '__main__':
 
-
     RobotMain.pprint('xArm-Python-SDK Version:{}'.format(version.__version__))
     arm = XArmAPI('192.168.1.221', baud_checkset=False)
     robot_main = RobotMain(arm)
-    
+
     ## BLOCKING
     #with keyboard.Listener(on_press=on_press, on_release = on_release) as listener:
     #    listener.join()
     #with keyboard.Listener(on_press=on_press) as listener:
     #    listener.join()
     ## NON-BLOCKING
-    listener = keyboard.Listener(
-        on_press=on_press,
-        on_release=on_release)
+    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
     listener.start()
 
     robot_main.run()
+    listener.join()
+    arm.disconnect()
