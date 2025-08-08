@@ -9,7 +9,8 @@ import threading
 from xarm import version
 from xarm.wrapper import XArmAPI
 
-from pynput import keyboard
+
+import pygame
 
 class RobotMain(object):
     def __init__(self, robot, **kwargs):
@@ -31,7 +32,7 @@ class RobotMain(object):
         self.y=-18.5
         self.z=553.5
 
-        self.current_direction = {'x': 0, 'y': 0}
+        self.current_direction = {'x': 0, 'y': 0, 'z': 0}
         self.move_step = 2.0
 
     # not useful, just to try        
@@ -152,9 +153,10 @@ class RobotMain(object):
                 
                 target_x = current_x + self.current_direction['x'] * self.move_step
                 target_y = current_y + self.current_direction['y'] * self.move_step
+                target_z = current_z + self.current_direction['z'] * self.move_step
 
                 self._arm.set_servo_cartesian(
-                    [target_x, target_y, current_z, roll, pitch, yaw],
+                    [target_x, target_y, target_z, roll, pitch, yaw],
                     speed=20,
                     mvacc=2000,
                 )
@@ -203,6 +205,12 @@ def on_press(key, injected):
         elif key.char == '-':
             print('setting arm state to 0')
             arm.set_state(0)
+        elif key.char == 'a' or key.char == "A":
+            print('z+')
+            robot_main.current_direction['z'] = 1
+        elif key.char == 's' or key.char == "S":
+            print('z-')
+            robot_main.current_direction['z'] = -1
 
     except AttributeError:
         print(' special key {} pressed'.format(
@@ -231,9 +239,9 @@ def on_press(key, injected):
             robot_main.current_direction['x']=1
         elif key == keyboard.Key.down:
             robot_main.current_direction['x']=-1
-        elif key == keyboard.Key.left:
-            robot_main.current_direction['y']=-1
         elif key == keyboard.Key.right:
+            robot_main.current_direction['y']=-1
+        elif key == keyboard.Key.left:
             robot_main.current_direction['y']=1
 
 
@@ -248,27 +256,134 @@ def on_release(key, injected):
         robot_main.current_direction['x']=0
     elif key == keyboard.Key.down:
         robot_main.current_direction['x']=0
-    elif key == keyboard.Key.left:
-        robot_main.current_direction['y']=0
     elif key == keyboard.Key.right:
         robot_main.current_direction['y']=0
+    elif key == keyboard.Key.left:
+        robot_main.current_direction['y']=0
+    elif key.char == 'a' or key.char == "A":
+        print("a/A released")
+        robot_main.current_direction['z'] = 0
+    elif key.char == 's' or key.char == "S":
+        print("s/S released")
+        robot_main.current_direction['z'] = 0
 
-        
+
+def draw_text(text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+    screen.blit(img, (x, y))
+
+
+
 if __name__ == '__main__':
 
-    RobotMain.pprint('xArm-Python-SDK Version:{}'.format(version.__version__))
-    arm = XArmAPI('192.168.1.221', baud_checkset=False)
-    robot_main = RobotMain(arm)
+    pygame.init()
 
-    ## BLOCKING
-    #with keyboard.Listener(on_press=on_press, on_release = on_release) as listener:
-    #    listener.join()
-    #with keyboard.Listener(on_press=on_press) as listener:
-    #    listener.join()
-    ## NON-BLOCKING
-    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
-    listener.start()
+    pygame.joystick.init()
 
-    robot_main.run()
-    listener.join()
-    arm.disconnect()
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 500
+
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("joysticks")
+
+    font_size = 30
+    font = pygame.font.SysFont("Futura", font_size)
+
+    clock = pygame.time.Clock()
+    FPS = 60
+
+    joysticks = []
+
+    x = 350
+    y = 200
+    player = pygame.Rect(x, y, 100, 100)
+
+
+    col="royalblue"
+
+    run = True
+    while run:
+        clock.tick(FPS)
+
+        screen.fill(pygame.Color("midnightblue"))
+
+        player.topleft=(x, y)
+
+
+        draw_text("controllers: " + str(pygame.joystick.get_count()), font, pygame.Color("azure"), 10, 10)
+        for joystick in joysticks:
+            draw_text("Battery Level: " +str(joystick.get_power_level()), font, pygame.Color("azure"), 10, 35 )
+            draw_text("Controller Type: " +str(joystick.get_name()), font, pygame.Color("azure"), 10, 60) 
+            draw_text("Number of Axes: " +str(joystick.get_numaxes()), font, pygame.Color("azure"), 10, 85)
+
+        for joystick in joysticks:
+            if joystick.get_button(0):
+                    col = "royalblue"
+            if joystick.get_button(1):
+                    col = "crimson"
+            if joystick.get_button(2):
+                    col = "fuchsia"
+            if joystick.get_button(3):
+                    col = "forestgreen"
+
+
+            # 0  - abxy
+            # 1  - abxy
+            # 2  - abxy
+            # 3  - abxy
+            # 4  - L1
+            # 5  - R1
+            # 6  - ... button
+            # 7  - ||| button
+            # 8  - STADIA button
+            # 9  - L3 button
+            # 10 - R3 button
+            # 11 - ASSISTANT button
+            # 12 - FULLSCREEN button
+            # 13 - R2 button
+            # 14 - L2 button
+            # 15 - NA button
+            # 16 - NA button
+            # 17 - NA button
+
+            if joystick.get_button(4):
+                player.scale_by(1.1)
+            if joystick.get_button(14):
+                player.scale_by(0.9)
+            h_move = joystick.get_axis(0)
+            v_move = joystick.get_axis(1)
+            if abs(v_move) > 0.05:
+                y+= v_move *10
+            if abs(h_move) > 0.05:
+                x+= h_move *10
+
+            if joystick.get_hat(0)[1]== -1:
+                y += 10
+            if joystick.get_hat(0)[1]== 1:
+                y -= 10
+            if joystick.get_hat(0)[0]== 1:
+                x += 10
+            if joystick.get_hat(0)[0]== -1:
+                x -= 10
+
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print("User closed program")
+                run = False
+            if event.type == pygame.JOYDEVICEADDED:
+                joy = pygame.joystick.Joystick(event.device_index)
+                joysticks.append(joy)
+            
+        
+        pygame.draw.rect(screen, pygame.Color(col), player)
+
+        pygame.display.flip()
+
+
+    # RobotMain.pprint('xArm-Python-SDK Version:{}'.format(version.__version__))
+    # arm = XArmAPI('192.168.1.221', baud_checkset=False)
+    # robot_main = RobotMain(arm)
+
+    # robot_main.run()
+    # arm.disconnect()
